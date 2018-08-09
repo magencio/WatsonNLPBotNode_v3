@@ -1,0 +1,16 @@
+{
+  "MicrosoftAppId": "",
+  "MicrosoftAppPassword": "",
+
+  "BotDevAppInsightsKey": "<<Your App Insights key>>",
+
+  "COSMOSDB_host": "https://<<Your cosmosDB>>.documents.azure.com:443/",
+  "COSMOSDB_key": "<<Your cosmosDB key>>",
+
+  "WATSON_workspaceId": "<<Your WATSON Assistant workspace>>",
+  "WATSON_workspaceVersion": "<< Your WATSON Assitant workspace version",
+  "WATSON_userName": "<<Your WATSON Assistant user name>>",
+  "WATSON_password": "<<Your WATSON Assistant password>>",
+
+  "CS_sentimentKey": "<<Your Cognitive Services Text Analytics Key. This is optional>>"
+}

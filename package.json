@@ -1,0 +1,47 @@
+{
+  "name": "watsonnlpbotnode_v3",
+  "author": "Alejandro Campos Magencio",
+  "description": "A sample project that shows how to build a basic bot with Microsoft Bot Framework and Watson Assistant",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "botbuilder",
+    "botframework",
+    "bots",
+    "chatbots",
+    "azure",
+    "watson"
+  ],
+  "scripts": {
+    "start": "node ./app/app.js",
+    "startdev": "nodemon",
+    "postinstall": "tsc",
+    "build": "tsc",
+    "clean": "rimraf ./app/*",
+    "lint": "tslint *.ts -t verbose"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "botbuilder": "^3.13.1",
+    "botbuilder-azure": "^3.1.0",
+    "botbuilder-instrumentation": "^1.1.18",
+    "documentdb-typescript": "^1.0.7",
+    "express": "^4.16.3",
+    "nconf": "^0.10.0",
+    "npm": "^5.8.0",
+    "restify": "^5.0.0",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.8.1",
+    "watson-developer-cloud": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.2",
+    "@types/restify": "^5.0.7",
+    "nodemon": "^1.17.3",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1"
+  },
+  "engines": {
+    "node": "8.9.4"
+  }
+}
