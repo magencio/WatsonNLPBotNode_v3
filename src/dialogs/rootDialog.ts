@@ -1,11 +1,10 @@
-import { Session, LuisRecognizer, IntentDialog, IDialogWaterfallStep, IIntentRecognizerResult, IDialogResult, Prompts, ResumeReason, EntityRecognizer } from 'botbuilder';
+import { Session, IntentRecognizer, IntentDialog, IDialogWaterfallStep, IIntentRecognizerResult, IDialogResult, Prompts, ResumeReason, EntityRecognizer } from 'botbuilder';
 import { BotFrameworkInstrumentation } from 'botbuilder-instrumentation';
-import { WatsonAssistantRecognizer } from '../watsonAssistantRecognizer';
 
 export class RootDialog extends IntentDialog {
     private instrumentation: BotFrameworkInstrumentation;
 
-    constructor(recognizer: WatsonAssistantRecognizer, instrumentation: BotFrameworkInstrumentation) {
+    constructor(recognizer: IntentRecognizer, instrumentation: BotFrameworkInstrumentation) {
         super({ recognizers: [recognizer] });
         this.instrumentation = instrumentation;
         this.matches('Education.Hi', this.onHi)

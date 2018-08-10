@@ -1,9 +1,8 @@
-import { LuisRecognizer, IntentDialog, Session, Message, ResumeReason, SuggestedActions, CardAction } from 'botbuilder';
-import { WatsonAssistantRecognizer } from '../watsonAssistantRecognizer';
+import { IntentRecognizer, IntentDialog, Session, Message, ResumeReason, SuggestedActions, CardAction } from 'botbuilder';
 
 export class ConfirmationDialog extends IntentDialog {
 
-    constructor(recognizer: WatsonAssistantRecognizer) {
+    constructor(recognizer: IntentRecognizer) {
         super({ recognizers: [recognizer] });
         this.onBegin(this.onBeginDialog)
             .matches('Confirmation.Yes', this.onYes)

@@ -1,7 +1,7 @@
 import { config }  from './config';
 import * as restify from 'restify';
 import * as path from 'path';
-import { ChatConnector, UniversalBot } from 'botbuilder';
+import { ChatConnector, UniversalBot, IntentRecognizer } from 'botbuilder';
 import { DocumentDbClient, AzureBotStorage } from 'botbuilder-azure';
 import * as logger from './services/logger';
 import { BotFrameworkInstrumentation } from 'botbuilder-instrumentation';
@@ -12,7 +12,7 @@ import { WatsonAssistantRecognizer } from './watsonAssistantRecognizer';
 
 const connector = createChatConnector();
 const bot = createBot(connector);
-const server = createServer(connector, bot);
+const server = createServer(connector);
 const recognizer = createRecognizer();
 const instrumentation = setupBotInstrumentation(bot, recognizer);
 setupBotLocalization(bot);
@@ -31,7 +31,7 @@ function createBot(connector: ChatConnector) : UniversalBot {
     return new UniversalBot(connector);
 }
 
-function createServer(connector: ChatConnector, bot: UniversalBot) : any {
+function createServer(connector: ChatConnector) : any {
     const server = restify.createServer();
     server.use(restify.plugins.queryParser());
     server.listen(process.env.port || process.env.PORT || 3977, function () {
@@ -42,7 +42,7 @@ function createServer(connector: ChatConnector, bot: UniversalBot) : any {
     return server;
 }
 
-function createRecognizer() : WatsonAssistantRecognizer {
+function createRecognizer() : IntentRecognizer {
     return new WatsonAssistantRecognizer({
         username: config.get('WATSON_userName'),
         password: config.get('WATSON_password'),
@@ -58,7 +58,7 @@ function setupBotLocalization(bot: UniversalBot) {
     });
 }
 
-function setupBotInstrumentation(bot: UniversalBot, recognizer: WatsonAssistantRecognizer) : BotFrameworkInstrumentation {
+function setupBotInstrumentation(bot: UniversalBot, recognizer: IntentRecognizer) : BotFrameworkInstrumentation {
     bot.use({
         botbuilder: logger.onMessageReceived,
         send: logger.onMessageSent
@@ -88,7 +88,7 @@ function setupBotStateStorage(bot: UniversalBot) {
     bot.set('storage', storage);
 }
 
-function setupBotDialogs(bot: UniversalBot, recognizer: WatsonAssistantRecognizer, instrumentation: BotFrameworkInstrumentation) {
+function setupBotDialogs(bot: UniversalBot, recognizer: IntentRecognizer, instrumentation: BotFrameworkInstrumentation) {
     bot.dialog('/', new RootDialog(recognizer, instrumentation));
     bot.dialog('prompt.confirmation', new ConfirmationDialog(recognizer));
     bot.dialog('prompt.number', new NumberDialog(recognizer));
